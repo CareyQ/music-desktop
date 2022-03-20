@@ -53,6 +53,14 @@ const router = createRouter({
             menu: 'local',
             keepAlive: true
           }
+        },
+        {
+          path: 'playlist',
+          name: 'playlist',
+          component: () => import('@renderer/views/playlist/PlayList.vue'),
+          meta: {
+            keepAlive: true
+          }
         }
       ]
     }

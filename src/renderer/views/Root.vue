@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import Header from '@renderer/components/layout/header/Header.vue'
 import Player from '@renderer/components/layout/player/Player.vue'
+import Menu from '@renderer/components/layout/menu/Menu.vue'
 </script>
 
 <template>
@@ -8,7 +9,10 @@ import Player from '@renderer/components/layout/player/Player.vue'
 
   <div class="body">
     <Player />
-    <main class="main">main</main>
+    <main class="main">
+      <Menu />
+      <RouterView />
+    </main>
     <div class="info">info</div>
   </div>
 </template>
@@ -24,6 +28,7 @@ import Player from '@renderer/components/layout/player/Player.vue'
 .body
   display: flex
   justify-content: space-around
+  height: calc(100% - 60px)
 
 .header, .body > *
   background-color: rgba(255, 255, 255, 0.056)
@@ -36,8 +41,8 @@ import Player from '@renderer/components/layout/player/Player.vue'
   width: calc(22% - 10px)
 
 .main
-  width: 60%
+  width: 58%
 
 .info
-  width: calc(18% - 10px)
+  width: calc(20% - 10px)
 </style>

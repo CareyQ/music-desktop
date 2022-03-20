@@ -10,12 +10,14 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "axios": "^0.26.1",
     "lodash": "^4.17.21",
-    "needle": "^3.0.0",
+    "node-fetch": "^3.2.3",
     "vue": "^3.2.31"
   },
   "devDependencies": {
     "@types/lodash": "^4.14.180",
+    "@types/node-fetch": "^2.6.1",
     "@vitejs/plugin-vue": "^2.2.0",
     "concurrently": "^7.0.0",
     "electron": "^17.1.2",
