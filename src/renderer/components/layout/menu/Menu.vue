@@ -1,13 +1,12 @@
 <script setup lang="ts">
 import { IMenus } from './useMenu'
-import SvgIcon from '@renderer/components/common/SvgIcon.vue'
 </script>
 
 <template>
   <ul class="menu">
     <li v-for="item in IMenus" :key="item.alias">
       <router-link active-class :to="item.alias" class="menu-item top-bg">
-        <SvgIcon :name="item.alias" />
+        <i :class="'ri-' + item.icon"></i>
         <span>{{ item.name }}</span>
       </router-link>
     </li>
@@ -24,13 +23,15 @@ import SvgIcon from '@renderer/components/common/SvgIcon.vue'
   gap: 14px
 
 .menu-item
-  display: flex
-  align-items: center
   cursor: pointer
   padding: 4px 12px
   border-radius: 10px
-  gap: 6px
+
+  i
+    font-size: 16px
+    margin-right: 6px
+    vertical-align: sub
 
 .router-link-exact-active.menu-item
-  background-color: #3fb17f
+  background-color: #f03b4f
 </style>

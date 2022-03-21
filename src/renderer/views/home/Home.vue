@@ -4,7 +4,6 @@ import { onMounted, ref } from 'vue'
 import { numberFormat } from '@renderer/utils/util'
 import { Singer } from '@renderer/models/netease/singer'
 import Skeleton from '@renderer/components/common/Skeleton.vue'
-import SvgIcon from '@renderer/components/common/SvgIcon.vue'
 import { useRouter } from 'vue-router'
 
 const router = useRouter()
@@ -45,10 +44,10 @@ const toPlayList = (id: number) => {
               <div class="item-cover">
                 <img :src="item.picUrl" :alt="item.name" />
                 <div class="count">
-                  <SvgIcon name="headPhone" size="14" />
+                  <i class="ri-headset"></i>
                   <span>{{ numberFormat(item.playCount) }}</span>
                 </div>
-                <SvgIcon name="play-circle-fill" class="play-btn" size="26" />
+                <i class="ri-play-circle play-btn"></i>
               </div>
               <p class="item-title">{{ item.name }}</p>
             </div>

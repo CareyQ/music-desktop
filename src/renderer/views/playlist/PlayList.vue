@@ -3,7 +3,7 @@ import { getListDetail } from '@renderer/api/netease'
 import type { PlayListModel } from '@renderer/models/netease/playlist'
 import { onMounted, ref } from 'vue'
 import { useRoute } from 'vue-router'
-import SvgIcon from '@renderer/components/common/SvgIcon.vue'
+import { formatTime } from '@renderer/utils/util'
 
 const route = useRoute()
 const detail = ref<PlayListModel>()
@@ -37,12 +37,39 @@ onMounted(async () => {
         </div>
       </div>
 
-      <div class="playlist-control">
-        <div class="btns">
-          <SvgIcon name="play-line" />
+      <div class="playlist-body">
+        <div class="playlist-control">
+          <div class="control-left">
+            <div class="play-all">
+              <div class="icon">
+                <div class="icon-bg"></div>
+                <i class="ri-play-circle"></i>
+              </div>
+              <span>播放全部</span>
+            </div>
+            <span class="count">{{ detail?.songCount }} 首</span>
+            <div class="collect primary-btn">收 藏</div>
+          </div>
+        </div>
+
+        <div class="playlist-content scrollbar">
+          <template v-for="item in detail?.songsDetail" :key="item.id">
+            <div class="play-list-item">
+              <div class="song-main">
+                <h3>{{ item.name }}</h3>
+                <span>
+                  <template v-for="(e, i) in item.ar" :key="i">
+                    {{ e.name }}
+                    {{ i === item.ar.length - 1 ? '' : ' / ' }}
+                  </template>
+                </span>
+                <span class="art">{{ item.al.name }}</span>
+                <span class="time">{{ formatTime(item.dt / 1000) }}</span>
+              </div>
+            </div>
+          </template>
         </div>
       </div>
-      6 6
     </div>
   </div>
 </template>
@@ -110,4 +137,49 @@ onMounted(async () => {
   -webkit-box-orient: vertical
   overflow: hidden
   text-overflow: ellipsis
+
+.playlist-control
+  display: flex
+  align-items: center
+  padding: 10px 0
+  font-size: 14px
+  border-bottom: 1px solid rgba(255, 255, 255, 0.13)
+
+.control-left
+  display: flex
+  align-items: center
+
+.play-all
+  display: flex
+  align-items: center
+  gap: 10px
+  cursor: pointer
+
+  i
+    font-size: 24px
+    color: #f03b4f
+
+  .icon
+    position: relative
+    height: 24px
+
+  .icon-bg
+    position: absolute
+    background-color: #fff
+    width: 40%
+    height: 50%
+    left: 30%
+    top: 30%
+    z-index: -1
+
+.count
+  margin: 0 30px 0 6px
+  opacity: 0.6
+  font-size: 13px
+
+.playlist-body
+  padding: 0 10px
+
+.playlist-content
+  padding: 10px 0
 </style>

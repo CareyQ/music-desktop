@@ -1,22 +1,27 @@
 export const IMenus = [
   {
     name: '首页',
-    alias: 'home'
+    alias: 'home',
+    icon: 'home'
   },
   {
     name: '探索',
-    alias: 'explore'
+    alias: 'explore',
+    icon: 'explore'
   },
   {
     name: '音乐库',
-    alias: 'library'
+    alias: 'library',
+    icon: 'music'
   },
   {
     name: '播放历史',
-    alias: 'history'
+    alias: 'history',
+    icon: 'history'
   },
   {
     name: '本地音乐',
-    alias: 'local'
+    alias: 'local',
+    icon: 'folder'
   }
 ]

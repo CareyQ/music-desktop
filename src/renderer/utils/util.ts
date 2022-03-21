@@ -29,3 +29,17 @@ export const randomArray = (array: object[], count: number) => {
   }
   return shuffled.slice(min)
 }
+
+/**
+ * 时间戳转分秒
+ */
+export const formatTime = (during: number) => {
+  const s = Math.floor(during) % 60
+  during = Math.floor(during / 60)
+  const i = during % 60
+
+  const ii = i < 10 ? `0${i}` : i
+  const ss = s < 10 ? `0${s}` : s
+
+  return ii + ':' + ss
+}

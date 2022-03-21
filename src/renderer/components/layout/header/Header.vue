@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import UserInfo from './UserInfo.vue'
 import Search from './Search.vue'
-import SvgIcon from '@renderer/components/common/SvgIcon.vue'
 </script>
 
 <template>
@@ -9,15 +8,15 @@ import SvgIcon from '@renderer/components/common/SvgIcon.vue'
     <UserInfo />
     <div class="header-other">
       <div class="header-left">
-        <SvgIcon name="back" />
-        <SvgIcon name="refresh" />
+        <i class="ri-left"></i>
+        <i class="ri-refresh"></i>
         <Search />
       </div>
       <div class="header-right">
-        <SvgIcon name="settings" />
-        <SvgIcon name="line" noPointer />
-        <SvgIcon name="minimize" size="14" />
-        <SvgIcon name="close" size="12" />
+        <i class="ri-settings"></i>
+        <span class="line"></span>
+        <i class="ri-down"></i>
+        <i class="ri-close"></i>
       </div>
     </div>
   </div>
@@ -39,6 +38,20 @@ import SvgIcon from '@renderer/components/common/SvgIcon.vue'
   flex: 1
   justify-content: space-between
 
-.header-left, .header-right
-  gap: 16px
+.header-left
+  gap: 10px
+
+.header-right
+  gap: 12px
+
+.header-right, .header-left
+  > i
+    cursor: pointer
+    -webkit-app-region: no-drag
+
+.line
+  margin: 0 10px
+  height: 14px
+  width: 1px
+  background-color: #fff
 </style>

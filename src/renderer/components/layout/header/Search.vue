@@ -4,7 +4,7 @@ import SvgIcon from '@renderer/components/common/SvgIcon.vue'
 
 <template>
   <div class="input-wrap top-bg">
-    <SvgIcon name="search" size="14" noPointer />
+    <i class="ri-search"></i>
     <input type="text" placeholder="搜索" />
   </div>
 </template>
