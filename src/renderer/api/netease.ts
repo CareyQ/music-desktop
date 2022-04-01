@@ -28,7 +28,7 @@ export const getHotSongList = async () => {
  */
 export const getSingers = async () => {
   const data = {
-    limit: 50,
+    limit: 8,
     offset: 0,
     total: true
   }

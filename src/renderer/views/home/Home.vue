@@ -21,7 +21,7 @@ const toPlayList = (id: number) => {
 </script>
 
 <template>
-  <div class="home scrollbar">
+  <div class="home container">
     <div class="home-module" v-if="!songList">
       <Skeleton height="24px" width="23%" class="module-title" />
       <div class="module-list">
@@ -40,17 +40,15 @@ const toPlayList = (id: number) => {
       <div class="module-list">
         <template v-for="item in songList" :key="item.id">
           <div class="module-list-item" @click="toPlayList(item.id)">
-            <div class="item-inner">
-              <div class="item-cover">
-                <img :src="item.picUrl" :alt="item.name" />
-                <div class="count">
-                  <i class="ri-headset"></i>
-                  <span>{{ numberFormat(item.playCount) }}</span>
-                </div>
-                <i class="ri-play-circle play-btn"></i>
+            <div class="item-cover">
+              <img :src="item.picUrl" :alt="item.name" />
+              <div class="count">
+                <i class="ri-headset"></i>
+                <span>{{ numberFormat(item.playCount) }}</span>
               </div>
-              <p class="item-title">{{ item.name }}</p>
+              <i class="ri-play-circle play-btn"></i>
             </div>
+            <p class="item-title">{{ item.name }}</p>
           </div>
         </template>
       </div>
@@ -59,12 +57,10 @@ const toPlayList = (id: number) => {
     <div class="home-module">
       <h2 class="module-title">推荐艺人</h2>
       <div class="module-list">
-        <template v-for="item in singers.sampleSize(8)" :key="item.id">
+        <template v-for="item in singers" :key="item.id">
           <div class="module-list-item singer-item">
-            <div class="item-inner">
-              <img :src="item.img1v1Url + '?param=150y150'" :alt="item.name" class="radius_100" />
-              <p class="item-title">{{ item.name }}</p>
-            </div>
+            <img :src="item.img1v1Url + '?param=150y150'" :alt="item.name" class="radius_100" />
+            <p class="item-title">{{ item.name }}</p>
           </div>
         </template>
       </div>
@@ -74,37 +70,25 @@ const toPlayList = (id: number) => {
 
 <style lang="stylus" scoped>
 .home
-  padding: 0 16px 16px
-  height: calc(100% - 56px)
-  overflow-y: auto
+  height: calc(100% - 54px)
+  padding: 0 20px 10px
 
 .module-list
   display: flex
   justify-content: space-between
   flex-wrap: wrap
-  margin: 0 -8px
 
   > *
-    margin-bottom: 12px
-    width: 25%
-    padding: 0 8px
-
-.item-inner
-  position: relative
-  padding: 6px 6px 10px
-  transition: background-color 0.25s
-  border-radius: 14px
-  cursor: pointer
-  height: 100%
-
-  &:hover
-    background-color: rgba(255, 255, 255, 0.11)
+    margin-bottom: 24px
+    width: 22%
 
 .item-cover
   position: relative
   margin-bottom: 6px
   overflow: hidden
-  border-radius: 14px
+  border-radius: 18px
+  color: #fff
+  cursor: pointer
 
   img
     display: block
@@ -116,7 +100,7 @@ const toPlayList = (id: number) => {
     bottom: 0
     left: 0
     width: 100%
-    height: 30%
+    height: 50%
     background: linear-gradient(transparent, rgba(0, 0, 0, 0.6))
 
   .play-btn
@@ -124,18 +108,21 @@ const toPlayList = (id: number) => {
     z-index: 1
     right: 6px
     bottom: 6px
+    cursor: pointer
 
 .count
   position: absolute
   left: 10px
   bottom: 10px
   z-index: 1
-  display: flex
-  align-items: center
   font-size: 12px
+  line-height: 1
+
+  i
+    vertical-align: bottom
 
   span
-    margin-left: 4px
+    margin-left: 2px
 
 .item-title
   font-size: 14px
@@ -146,18 +133,11 @@ const toPlayList = (id: number) => {
   text-overflow: ellipsis
 
 .singer-item
-  .play-btn
-    position: absolute
-    left: 50%
-    top: 50%
-    transform: translate(-50%, -100%)
-    opacity: 0.9
-    transition: opacity 0.25s
-
-    &:hover
-      opacity: 1
+  img
+    cursor: pointer
 
   .item-title
     margin-top: 10px
     text-align: center
+    cursor: pointer
 </style>

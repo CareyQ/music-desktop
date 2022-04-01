@@ -5,7 +5,7 @@ import { IMenus } from './useMenu'
 <template>
   <ul class="menu">
     <li v-for="item in IMenus" :key="item.alias">
-      <router-link active-class :to="item.alias" class="menu-item top-bg">
+      <router-link active-class :to="item.alias" class="menu-item">
         <i :class="'ri-' + item.icon"></i>
         <span>{{ item.name }}</span>
       </router-link>
@@ -18,20 +18,22 @@ import { IMenus } from './useMenu'
   display: flex
   justify-content: center
   align-items: center
-  height: 50px
-  font-size: 14px
-  gap: 14px
+  padding: 10px 0
+  font-size: 16px
+  gap: 10px
 
 .menu-item
+  position: relative
+  z-index: 9
+  display: flex
+  align-items: center
   cursor: pointer
-  padding: 4px 12px
+  padding: 8px 12px 4px
   border-radius: 10px
-
-  i
-    font-size: 16px
-    margin-right: 6px
-    vertical-align: sub
+  line-height: 1
+  gap: 6px
 
 .router-link-exact-active.menu-item
   background-color: #f03b4f
+  color: #fff
 </style>

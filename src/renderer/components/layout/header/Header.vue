@@ -1,57 +1,35 @@
-<script setup lang="ts">
-import UserInfo from './UserInfo.vue'
-import Search from './Search.vue'
-</script>
-
 <template>
-  <div class="header">
-    <UserInfo />
-    <div class="header-other">
-      <div class="header-left">
-        <i class="ri-left"></i>
-        <i class="ri-refresh"></i>
-        <Search />
-      </div>
-      <div class="header-right">
-        <i class="ri-settings"></i>
-        <span class="line"></span>
-        <i class="ri-down"></i>
-        <i class="ri-close"></i>
-      </div>
+  <header class="header">
+    <div class="control">
+      <i class="ri-close"></i>
+      <i class="ri-down"></i>
     </div>
-  </div>
+    <!-- <div class="title">Pure Music</div> -->
+  </header>
 </template>
 
 <style lang="stylus" scoped>
-.header, .header-left, .header-right, .header-other
-  display: flex
-  align-items: center
-
 .header
-  padding: 10px 16px
+  display: flex
+  justify-content: center
+  align-items: center
+  padding: 0 12px
   -webkit-app-region: drag
+  height: 30px
 
-.user-info
-  width: 260px
-
-.header-other
-  flex: 1
-  justify-content: space-between
-
-.header-left
-  gap: 10px
-
-.header-right
-  gap: 12px
-
-.header-right, .header-left
-  > i
+  i
     cursor: pointer
     -webkit-app-region: no-drag
 
-.line
-  margin: 0 10px
-  height: 14px
-  width: 1px
-  background-color: #fff
+.control
+  position: absolute
+  left: 12px
+  top: 0
+  height: 100%
+  display: flex
+  align-items: center
+  gap: 6px
+
+.title
+  text-align: center
 </style>

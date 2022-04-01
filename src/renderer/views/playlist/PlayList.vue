@@ -17,58 +17,54 @@ onMounted(async () => {
 
 <template>
   <div class="playlist">
-    <div class="top-bg-noHover playlist-inner">
-      <div class="playlist-detail">
-        <div class="detail-bg" :style="'background-image: url(' + detail?.picUrl + ')'"></div>
-        <div class="detail-inner">
-          <img :src="detail?.picUrl" :alt="detail?.name" />
-          <div class="detail">
-            <h2>{{ detail?.name }}</h2>
-            <p class="meta">
-              <span>{{ detail?.authorName }}</span>
-              <span class="tags">
-                <template v-for="(item, index) in detail?.tags" :key="index">
-                  <span>#{{ item }}</span>
-                </template>
-              </span>
-            </p>
-            <p class="desc">{{ detail?.desc }}</p>
-          </div>
+    <div class="playlist-detail">
+      <div class="detail-bg" :style="'background-image: url(' + detail?.picUrl + ')'"></div>
+      <img :src="detail?.picUrl" :alt="detail?.name" class="cover" />
+      <div class="detail">
+        <h2>{{ detail?.name }}</h2>
+        <p class="meta">
+          <span>{{ detail?.authorName }}</span>
+          <span class="tags">
+            <template v-for="(item, index) in detail?.tags" :key="index">
+              <span>#{{ item }}</span>
+            </template>
+          </span>
+        </p>
+        <p class="desc">{{ detail?.desc }}</p>
+      </div>
+    </div>
+
+    <div class="playlist-body">
+      <div class="playlist-control">
+        <div class="play-all">
+          <i class="ri-play-circle"></i>
+          <span>播放全部</span>
         </div>
+        <span class="count">{{ detail?.songCount }} 首</span>
+        <div class="collect primary-btn">收 藏</div>
+        <div class="more icon-btn"><i class="ri-more"></i></div>
       </div>
 
-      <div class="playlist-body">
-        <div class="playlist-control">
-          <div class="control-left">
-            <div class="play-all">
-              <div class="icon">
-                <div class="icon-bg"></div>
-                <i class="ri-play-circle"></i>
-              </div>
-              <span>播放全部</span>
+      <div class="playlist-content container">
+        <template v-for="item in detail?.songsDetail" :key="item.id">
+          <div class="play-list-item">
+            <div class="item-left">
+              <h3 class="title text-hidden">
+                {{ item.name }}
+                <span v-if="item.tns"> ({{ item.tns[0] }})</span>
+              </h3>
+              <span class="author text-hidden">
+                <template v-for="(e, i) in item.ar" :key="i">
+                  {{ e.name }}
+                  {{ i === item.ar.length - 1 ? '' : ' / ' }}
+                </template>
+              </span>
             </div>
-            <span class="count">{{ detail?.songCount }} 首</span>
-            <div class="collect primary-btn">收 藏</div>
+            <span class="art text-hidden">{{ item.al.name }}</span>
+            <span class="time">{{ formatTime(item.dt / 1000) }}</span>
+            <i class="ri-more-line"></i>
           </div>
-        </div>
-
-        <div class="playlist-content scrollbar">
-          <template v-for="item in detail?.songsDetail" :key="item.id">
-            <div class="play-list-item">
-              <div class="song-main">
-                <h3>{{ item.name }}</h3>
-                <span>
-                  <template v-for="(e, i) in item.ar" :key="i">
-                    {{ e.name }}
-                    {{ i === item.ar.length - 1 ? '' : ' / ' }}
-                  </template>
-                </span>
-                <span class="art">{{ item.al.name }}</span>
-                <span class="time">{{ formatTime(item.dt / 1000) }}</span>
-              </div>
-            </div>
-          </template>
-        </div>
+        </template>
       </div>
     </div>
   </div>
@@ -76,36 +72,22 @@ onMounted(async () => {
 
 <style lang="stylus" scoped>
 .playlist
-  padding: 0 8px 8px
+  padding: 0 0 10px 20px
+  height: calc(100% - 16px)
 
-.playlist-inner
-  border-radius: 20px
-  overflow: hidden
+.cover
+  width: 120px
+  border-radius: 12px
 
 .playlist-detail
   position: relative
-  padding: 8px 16px 8px 8px
-  overflow: hidden
-
-  &:after
-    content: ''
-    position: absolute
-    z-index: -1
-    left: 0
-    top: 0
-    width: 100%
-    height: 100%
-    background-color: rgba(0, 0, 0, 0.5)
-
-.detail-inner
-  position: relative
   z-index: 1
   display: flex
-  gap: 16px
+  gap: 20px
+  width: calc(100% - 20px)
 
-  img
-    width: 120px
-    border-radius: 12px
+.detail
+  padding-top: 8px
 
   h2
     font-size: 20px
@@ -116,11 +98,20 @@ onMounted(async () => {
 .detail-bg
   position: absolute
   width: 100%
-  height: 100%
+  height: 160px
   left: 0
-  top: 0
+  top: -10%
   z-index: -1
-  filter: blur(15px)
+  filter: blur(14px)
+  opacity: 0.5
+  background-position: center
+
+  &:after
+    content: ''
+    position: absolute
+    width: 100%
+    height: 100%
+    background-color: rgba(255, 255, 255, 0.24)
 
 .meta
   margin: 6px 0
@@ -138,48 +129,82 @@ onMounted(async () => {
   overflow: hidden
   text-overflow: ellipsis
 
+.playlist-body
+  position: relative
+  z-index: 9
+  height: 100%
+
 .playlist-control
   display: flex
   align-items: center
-  padding: 10px 0
-  font-size: 14px
+  padding: 16px 0 10px
   border-bottom: 1px solid rgba(255, 255, 255, 0.13)
 
-.control-left
-  display: flex
-  align-items: center
-
 .play-all
+  cursor: pointer
   display: flex
   align-items: center
-  gap: 10px
-  cursor: pointer
 
   i
-    font-size: 24px
+    margin-right: 8px
+    font-size: 26px
     color: #f03b4f
 
-  .icon
-    position: relative
-    height: 24px
-
-  .icon-bg
-    position: absolute
-    background-color: #fff
-    width: 40%
-    height: 50%
-    left: 30%
-    top: 30%
-    z-index: -1
+  span
+    margin-top: 3px
 
 .count
-  margin: 0 30px 0 6px
+  margin: 4px 30px 0 6px
   opacity: 0.6
-  font-size: 13px
+  font-size: 14px
 
-.playlist-body
-  padding: 0 10px
+.more
+  margin-left: 20px
 
 .playlist-content
+  height: calc(100% - 200px)
   padding: 10px 0
+
+.play-list-item
+  display: flex
+  justify-content: space-between
+  padding: 16px 10px 12px
+  margin-right: 20px
+  gap: 10px
+  align-items: center
+  transition: background-color 0.25s
+  border-radius: 10px
+
+  &:hover
+    background-color: #f1f1f3
+
+.title
+  width: 340px
+  font-size: 16px
+  font-weight: 400
+
+  span
+    font-size: 14px
+    opacity: 0.6
+
+.author
+  font-size: 12px
+
+.art
+  width: 200px
+
+.art, .time
+  margin-top: 3px
+
+.ri-more-line
+  cursor: pointer
+  height: 24px
+  width: 24px
+  border-radius: 50%
+  text-align: center
+  line-height: 24px
+  transition: background-color 0.25s
+
+  &:hover
+    background-color: rgba(255, 255, 255, 0.6)
 </style>

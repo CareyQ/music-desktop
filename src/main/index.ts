@@ -1,11 +1,11 @@
 const { app, BrowserWindow, session } = require('electron')
 const vueDevToolsPath =
-  'C:\\Users\\CareyQ\\AppData\\Local\\Microsoft\\Edge\\User Data\\Default\\Extensions\\nhdogjmejiglipccpnnnanhbledajbpd\\6.1.3_0'
+  '/home/careyq/.config/google-chrome/Default/Extensions/nhdogjmejiglipccpnnnanhbledajbpd/6.1.3_0/'
 
 function createWindow() {
   const win = new BrowserWindow({
-    width: 1280,
-    height: 640,
+    width: 1100,
+    height: 660,
     frame: false,
     webPreferences: {
       contextIsolation: false,
