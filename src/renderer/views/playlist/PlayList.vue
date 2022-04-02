@@ -1,18 +1,28 @@
 <script setup lang="ts">
 import { getListDetail } from '@renderer/api/netease'
 import type { PlayListModel } from '@renderer/models/netease/playlist'
+import type { Song } from '@renderer/models/netease/song'
 import { onMounted, ref } from 'vue'
 import { useRoute } from 'vue-router'
 import { formatTime } from '@renderer/utils/util'
+import { usePlayerStore } from '@renderer/store/player'
 
 const route = useRoute()
 const detail = ref<PlayListModel>()
+const { pushPlayList, play } = usePlayerStore()
 
 onMounted(async () => {
   const id: number = Number(route.query.id)
   detail.value = await getListDetail(id)
   console.log(detail)
 })
+
+const playAll = () => {
+  if (detail.value) {
+    pushPlayList(true, detail.value.songsDetail)
+    play(detail.value.songsDetail[0].id)
+  }
+}
 </script>
 
 <template>
@@ -36,7 +46,7 @@ onMounted(async () => {
 
     <div class="playlist-body">
       <div class="playlist-control">
-        <div class="play-all">
+        <div class="play-all" @click="playAll()">
           <i class="ri-play-circle"></i>
           <span>播放全部</span>
         </div>

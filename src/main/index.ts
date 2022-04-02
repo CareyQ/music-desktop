@@ -1,6 +1,6 @@
 const { app, BrowserWindow, session } = require('electron')
 const vueDevToolsPath =
-  '/home/careyq/.config/google-chrome/Default/Extensions/nhdogjmejiglipccpnnnanhbledajbpd/6.1.3_0/'
+  '/home/careyq/.config/google-chrome/Default/Extensions/nhdogjmejiglipccpnnnanhbledajbpd/6.1.4_0/'
 
 function createWindow() {
   const win = new BrowserWindow({

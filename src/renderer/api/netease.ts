@@ -89,22 +89,23 @@ export const getListDetail = async (id: number) => {
   return result
 }
 
-// /**
-//  * 获取音乐
-//  * @param {*} id 歌曲 ID
-//  */
-// export const music = (id: number) => {
-//   const data = {
-//     ids: '[' + id + ']',
-//     br: 999000
-//   }
-//   return request('https://interface3.music.163.com/eapi/song/enhance/player/url', {
-//     method: 'POST',
-//     headers: buildHeaders(),
-//     data: builderData(data, 'eapi'),
-//     crypto: true
-//   })
-// }
+/**
+ * 获取音乐
+ * @param {*} id 歌曲 ID
+ */
+export const getSong = async (id: number) => {
+  const data = {
+    ids: '[' + id + ']',
+    br: 999000
+  }
+  const { data: result } = await request({
+    url: 'https://interface3.music.163.com/eapi/song/enhance/player/url',
+    method: 'POST',
+    headers,
+    data: builderData(data, 'eapi')
+  })
+  return result[0]
+}
 
 /**
  * 构建参数

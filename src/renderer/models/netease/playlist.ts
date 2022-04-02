@@ -1,3 +1,5 @@
+import type { Song } from '@renderer/models/netease/song'
+
 export interface PlayListDetail {
   id: number
   name: string
@@ -29,6 +31,6 @@ export interface PlayListModel {
   songCount: number
   authorId: number
   authorName: string
-  songsDetail: any[]
+  songsDetail: Song[]
   privileges: any[]
 }
