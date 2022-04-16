@@ -1,5 +1,5 @@
 <template>
-  <RouterView />
+  <div>album</div>
 </template>
 
 <script setup>

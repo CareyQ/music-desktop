@@ -1,5 +1,5 @@
 <template>
-  <RouterView />
+  <div>cloud</div>
 </template>
 
 <script setup>

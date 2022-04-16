@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "target": "ES6",
+    "module": "commonjs",
+    "allowSyntheticDefaultImports": true,
+    "jsx": "preserve",
+    "baseUrl": ".",
+    "paths": {
+      "@main/*": ["src/main/*"],
+      "@renderer/*": ["src/renderer/*"],
+      "@store/*": ["src/renderer/store/*"],
+      "@components/*": ["src/renderer/components/*"],
+      "@router/*": ["src/renderer/router/*"],
+      "@view/*": ["src/renderer/view/*"],
+      "@util/*": ["src/renderer/util/*"],
+      "@api/*": ["src/renderer/api/*"],
+      "@assets/*": ["src/renderer/assets/*"]
+    }
+  },
+  "include": ["src/**/*.js", "src/**/*.vue"]
+}
