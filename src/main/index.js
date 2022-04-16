@@ -1,10 +1,10 @@
 const { app, BrowserWindow, session } = require('electron')
-const vueDevToolsPath =
-  '/home/careyq/.config/google-chrome/Default/Extensions/nhdogjmejiglipccpnnnanhbledajbpd/6.1.4_0/'
+const devTools =
+  'C:/Users/CareyQ/AppData/Local/Microsoft/Edge/User Data/Default/Extensions/nhdogjmejiglipccpnnnanhbledajbpd/6.1.4_0'
 
 function createWindow() {
   const win = new BrowserWindow({
-    width: 1100,
+    width: 1140,
     height: 660,
     frame: false,
     webPreferences: {
@@ -34,7 +34,7 @@ app.on('window-all-closed', () => {
 
 app.whenReady().then(async () => {
   createWindow
-  await session.defaultSession.loadExtension(vueDevToolsPath)
+  await session.defaultSession.loadExtension(devTools)
 })
 
 app.whenReady().then(createWindow)

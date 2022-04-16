@@ -1,35 +1,26 @@
 {
   "name": "music-desktop",
   "private": true,
-  "version": "1.0.0",
-  "main": "src/main/index.ts",
+  "version": "0.0.1",
+  "main": "src/main/index.js",
   "scripts": {
     "dev": "concurrently vite \"npm run electron:dev\"",
     "electron:dev": "electron .",
-    "build": "vue-tsc --noEmit && vite build",
+    "build": "vite build",
     "preview": "vite preview"
   },
   "dependencies": {
-    "axios": "^0.26.1",
-    "lodash": "^4.17.21",
     "node-fetch": "^3.2.3",
-    "vue": "^3.2.31"
+    "vue": "^3.2.33"
   },
   "devDependencies": {
-    "@types/lodash": "^4.14.180",
-    "@types/node-fetch": "^2.6.1",
-    "@vitejs/plugin-vue": "^2.2.0",
-    "concurrently": "^7.0.0",
-    "electron": "^17.1.2",
-    "electron-builder": "^22.14.13",
-    "fast-glob": "^3.2.11",
-    "pinia": "^2.0.11",
-    "stylus": "^0.56.0",
-    "svg-sprite-loader": "^6.0.11",
-    "typescript": "~4.6.2",
-    "vite": "^2.8.6",
-    "vite-plugin-svg-icons": "^2.0.1",
-    "vue-router": "^4.0.14",
-    "vue-tsc": "^0.32.1"
+    "@vitejs/plugin-vue": "^2.3.1",
+    "concurrently": "^7.1.0",
+    "electron": "^18.0.4",
+    "electron-builder": "^23.0.3",
+    "pinia": "^2.0.13",
+    "stylus": "^0.57.0",
+    "vite": "^2.9.2",
+    "vue-router": "^4.0.14"
   }
 }
