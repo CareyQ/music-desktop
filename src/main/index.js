@@ -4,8 +4,8 @@ const devTools =
 
 function createWindow() {
   const win = new BrowserWindow({
-    width: 1140,
-    height: 660,
+    width: 1060,
+    height: 770,
     frame: false,
     webPreferences: {
       contextIsolation: false,
@@ -17,13 +17,15 @@ function createWindow() {
   win.webContents.openDevTools({ mode: 'detach' })
 }
 
-app.on('activate', () => {
-  const allWindows = BrowserWindow.getAllWindows()
-  if (allWindows.length) {
-    allWindows[0].focus()
-  } else {
-    init()
-  }
+app.whenReady().then(async () => {
+  await session.defaultSession.loadExtension(devTools)
+  createWindow()
+
+  app.on('activate', () => {
+    if (BrowserWindow.getAllWindows().length === 0) {
+      createWindow()
+    }
+  })
 })
 
 app.on('window-all-closed', () => {
@@ -31,15 +33,3 @@ app.on('window-all-closed', () => {
     app.quit()
   }
 })
-
-app.whenReady().then(async () => {
-  createWindow
-  await session.defaultSession.loadExtension(devTools)
-})
-
-app.whenReady().then(createWindow)
-
-function init() {
-  console.log('init')
-  createWindow()
-}

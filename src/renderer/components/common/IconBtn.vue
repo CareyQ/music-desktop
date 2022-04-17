@@ -14,13 +14,13 @@ i
 
 .box
   display: inline-block
-  width: 26px
-  height: 26px
+  width: 28px
+  height: 28px
   text-align: center
-  line-height: 26px
+  line-height: 28px
   transition: all 0.25s
   border-radius: 6px
 
   &:hover
-    background-color: #f2f2f4
+    background-color: rgba(255, 255, 255, 0.1)
 </style>
